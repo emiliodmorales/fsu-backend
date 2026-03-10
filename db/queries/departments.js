@@ -36,7 +36,7 @@ export async function createDepartment({
 
 export async function getDepartments() {
   const sql = `
-    SELECT * FROM departments
+    SELECT id, name FROM departments
   `;
   const { rows: departments } = await db.query(sql);
   return departments;

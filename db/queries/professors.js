@@ -37,7 +37,7 @@ export async function createProfessor({
 
 export async function getProfessors() {
   const sql = `
-    SELECT * FROM professors
+    SELECT id, name FROM professors
   `;
   const { rows: professors } = await db.query(sql);
   return professors;
