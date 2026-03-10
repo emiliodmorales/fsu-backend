@@ -3,6 +3,7 @@ import {
   deleteProfessor,
   getProfessorById,
   getProfessors,
+  updateProfessor,
 } from "#db/queries/professors";
 import requireBody from "#middleware/requireBody";
 
@@ -50,6 +51,24 @@ router.delete("/:id", async (req, res) => {
   const professor = await deleteProfessor(req.professor.id);
   res.send(professor);
 });
+
+router.put(
+  "/:id",
+  requireBody(["name", "bio", "profileImage", "email", "phone", "department"]),
+  async (req, res) => {
+    const { name, bio, profileImage, email, phone, department } = req.body;
+    const professor = await updateProfessor({
+      id: req.professor.id,
+      name,
+      bio,
+      profileImage,
+      email,
+      phone,
+      department,
+    });
+    res.send(professor);
+  },
+);
 
 router.get("/:id/department", (req, res) => {
   res.send(req.professor.department);

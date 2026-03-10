@@ -72,3 +72,38 @@ export async function deleteProfessor(id) {
   } = await db.query(sql, [id]);
   return professor;
 }
+
+export async function updateProfessor({
+  id,
+  name,
+  bio,
+  profileImage,
+  email,
+  phone,
+  department,
+}) {
+  const sql = `
+    UPDATE professors
+    SET
+      name=$2,
+      bio=$3,
+      profile_image=$4,
+      email=$5,
+      phone=$6,
+      department=$7
+    WHERE id=$1
+    RETURNING *
+  `;
+  const {
+    rows: [professor],
+  } = await db.query(sql, [
+    id,
+    name,
+    bio,
+    profileImage,
+    email,
+    phone,
+    department,
+  ]);
+  return professor;
+}
