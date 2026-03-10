@@ -44,8 +44,15 @@ export async function getDepartments() {
 
 export async function getDepartmentById(id) {
   const sql = `
-    SELECT * FROM departments
-    WHERE id=$1
+    SELECT
+      departments.*,
+      (
+        SELECT json_agg(professors)
+        FROM professors
+        WHERE departments.id = professors.department
+      ) AS professors
+    FROM departments
+    WHERE departments.id=$1
   `;
   const {
     rows: [department],
