@@ -71,3 +71,28 @@ export async function deleteDepartment(id) {
   } = await db.query(sql, [id]);
   return department;
 }
+
+export async function updateDepartment({
+  id,
+  name,
+  description,
+  images,
+  email,
+  phone,
+}) {
+  const sql = `
+    UPDATE departments
+    SET
+      name=$2,
+      description=$3,
+      images=$4,
+      email=$5,
+      phone=$6
+    WHERE id=$1
+    RETURNING *
+  `;
+  const {
+    rows: [department],
+  } = await db.query(sql, [id, name, description, images, email, phone]);
+  return department;
+}

@@ -3,6 +3,7 @@ import {
   deleteDepartment,
   getDepartmentById,
   getDepartments,
+  updateDepartment,
 } from "#db/queries/departments";
 import requireAdmin from "#middleware/requireAdmin";
 import requireBody from "#middleware/requireBody";
@@ -50,6 +51,23 @@ router.delete("/:id", async (req, res) => {
   const department = await deleteDepartment(req.department.id);
   res.send(department);
 });
+
+router.put(
+  "/:id",
+  requireBody(["name", "description", "images", "email", "phone"]),
+  async (req, res) => {
+    const { name, description, images, email, phone } = req.body;
+    const department = await updateDepartment({
+      id: req.department.id,
+      name,
+      description,
+      images,
+      email,
+      phone,
+    });
+    res.send(department);
+  },
+);
 
 router.get("/:id/professors", (req, res) => {
   res.send(req.department.professors);
