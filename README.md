@@ -32,10 +32,10 @@ table professors {
   profile_image text
   email text [unique]
   phone [unique]
-  department text [not null]
+  department_id int [not null]
 }
 
-Ref: departments.name < professors.department
+Ref: departments.id < professors.department_id
 ```
 
 </details>

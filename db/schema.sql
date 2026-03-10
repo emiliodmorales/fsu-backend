@@ -22,7 +22,7 @@ CREATE TABLE
     profile_image text,
     email text UNIQUE,
     phone text UNIQUE,
-    department text NOT NULL REFERENCES departments (name) ON DELETE CASCADE
+    department_id int NOT NULL REFERENCES departments (id) ON DELETE CASCADE
   );
 
 CREATE TABLE

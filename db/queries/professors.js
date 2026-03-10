@@ -25,7 +25,7 @@ export async function createProfessor({
 }) {
   const sql = `
     INSERT INTO professors
-      (name, bio, profile_image, email, phone, department)
+      (name, bio, profile_image, email, phone, department_id)
     VALUES
       ($1, $2, $3, $4, $5, $6)
     RETURNING *
@@ -51,7 +51,7 @@ export async function getProfessorById(id) {
       (
         SELECT to_json(departments)
         FROM departments
-        WHERE departments.name = professors.department
+        WHERE departments.id = professors.department_id
       ) AS department
     FROM professors
     WHERE professors.id=$1
@@ -91,7 +91,7 @@ export async function updateProfessor({
       profile_image=$4,
       email=$5,
       phone=$6,
-      department=$7
+      department_id=$7
     WHERE id=$1
     RETURNING *
   `;
