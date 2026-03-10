@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
 
 router.post(
   "/",
+  requireAdmin,
   requireBody(["name", "description", "images", "email", "phone"]),
   async (req, res) => {
     const { name, description, images, email, phone } = req.body;
@@ -47,13 +48,14 @@ router.get("/:id", (req, res) => {
   res.send(req.department);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireAdmin, async (req, res) => {
   const department = await deleteDepartment(req.department.id);
   res.send(department);
 });
 
 router.put(
   "/:id",
+  requireAdmin,
   requireBody(["name", "description", "images", "email", "phone"]),
   async (req, res) => {
     const { name, description, images, email, phone } = req.body;

@@ -13,6 +13,9 @@ app.use(getAdminFromToken);
 import cors from "cors";
 app.use(cors({ origin: /localhost/ }));
 
+import adminsRouter from "#api/admins";
+app.use("/admins", adminsRouter);
+
 import departmentsRouter from "#api/departments";
 app.use("/departments", departmentsRouter);
 

@@ -32,3 +32,18 @@ export async function getAdminById(id) {
   } = await db.query(sql, [id]);
   return admin;
 }
+
+export async function getAdminByLogin(username, password) {
+  const sql = `
+    SELECT * FROM admins
+    WHERE username=$1
+  `;
+  const {
+    rows: [admin],
+  } = await db.query(sql, [username]);
+
+  const isValid = await bcrypt.compare(password, admin.password);
+  if (!isValid) return null;
+
+  return admin;
+}
