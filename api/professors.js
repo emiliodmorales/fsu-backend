@@ -21,3 +21,7 @@ router.param("id", async (req, res, next) => {
 router.get("/:id", (req, res) => {
   res.send(req.professor);
 });
+
+router.get("/:id/department", (req, res) => {
+  res.send(req.professor.department);
+});
