@@ -25,7 +25,7 @@ async function seed() {
     profileImage: "https://www.bard.edu/files/programs/image.php?id=3200091",
     email: "bill@fsu.edu",
     phone: "(243)198-1448",
-    department: math.id,
+    department: "Math",
   });
 
   const dean = await createAdmin("dean", "password123");

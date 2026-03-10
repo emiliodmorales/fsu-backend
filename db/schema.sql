@@ -22,7 +22,7 @@ CREATE TABLE
     profile_image text,
     email text UNIQUE,
     phone text UNIQUE,
-    department bigint REFERENCES departments (id) ON DELETE CASCADE
+    department text REFERENCES departments (name) ON DELETE CASCADE
   );
 
 CREATE TABLE
