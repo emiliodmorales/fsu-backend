@@ -17,22 +17,17 @@ router.get("/", async (req, res) => {
   res.send(departments);
 });
 
-router.post(
-  "/",
-  requireAdmin,
-  requireBody(["name", "description", "images", "email", "phone"]),
-  async (req, res) => {
-    const { name, description, images, email, phone } = req.body;
-    const department = await createDepartment({
-      name,
-      description,
-      images,
-      email,
-      phone,
-    });
-    res.status(201).send(department);
-  },
-);
+router.post("/", requireAdmin, requireBody(["name"]), async (req, res) => {
+  const { name, description, images, email, phone } = req.body;
+  const department = await createDepartment({
+    name,
+    description,
+    images,
+    email,
+    phone,
+  });
+  res.status(201).send(department);
+});
 
 router.param("id", async (req, res, next) => {
   const { id } = req.params;
@@ -53,23 +48,18 @@ router.delete("/:id", requireAdmin, async (req, res) => {
   res.send(department);
 });
 
-router.put(
-  "/:id",
-  requireAdmin,
-  requireBody(["name", "description", "images", "email", "phone"]),
-  async (req, res) => {
-    const { name, description, images, email, phone } = req.body;
-    const department = await updateDepartment({
-      id: req.department.id,
-      name,
-      description,
-      images,
-      email,
-      phone,
-    });
-    res.send(department);
-  },
-);
+router.put("/:id", requireAdmin, requireBody(["name"]), async (req, res) => {
+  const { name, description, images, email, phone } = req.body;
+  const department = await updateDepartment({
+    id: req.department.id,
+    name,
+    description,
+    images,
+    email,
+    phone,
+  });
+  res.send(department);
+});
 
 router.get("/:id/professors", (req, res) => {
   res.send(req.department.professors);

@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 router.post(
   "/",
   requireAdmin,
-  requireBody(["name", "bio", "profileImage", "email", "phone", "department"]),
+  requireBody(["name", "department"]),
   async (req, res) => {
     const { name, bio, profileImage, email, phone, department } = req.body;
     const professor = await createProfessor({
@@ -57,7 +57,7 @@ router.delete("/:id", requireAdmin, async (req, res) => {
 router.put(
   "/:id",
   requireAdmin,
-  requireBody(["name", "bio", "profileImage", "email", "phone", "department"]),
+  requireBody(["name", "department"]),
   async (req, res) => {
     const { name, bio, profileImage, email, phone, department } = req.body;
     const professor = await updateProfessor({
