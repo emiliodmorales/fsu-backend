@@ -8,6 +8,7 @@ import { createAdmin, getAdminByLogin } from "#db/queries/admins";
 
 router.post(
   "/register",
+  requireAdmin,
   requireBody(["username", "password"]),
   async (req, res) => {
     const { username, password } = req.body;
