@@ -1,4 +1,10 @@
-import { getProfessorById, getProfessors } from "#db/queries/professors";
+import {
+  createProfessor,
+  getProfessorById,
+  getProfessors,
+} from "#db/queries/professors";
+import requireBody from "#middleware/requireBody";
+
 import { Router } from "express";
 const router = Router();
 export default router;
@@ -7,6 +13,23 @@ router.get("/", async (req, res) => {
   const professors = await getProfessors();
   res.send(professors);
 });
+
+router.post(
+  "/",
+  requireBody(["name", "bio", "profileImage", "email", "phone", "department"]),
+  async (req, res) => {
+    const { name, bio, profileImage, email, phone, department } = req.body;
+    const professor = await createProfessor({
+      name,
+      bio,
+      profileImage,
+      email,
+      phone,
+      department,
+    });
+    res.status(201).send(professor);
+  },
+);
 
 router.param("id", async (req, res, next) => {
   const { id } = req.params;
