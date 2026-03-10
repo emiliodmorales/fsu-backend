@@ -7,27 +7,27 @@ DROP TABLE IF EXISTS admins;
 CREATE TABLE
   departments (
     id serial PRIMARY KEY,
-    name text UNIQUE NOT NULL,
+    name varchar(255) UNIQUE NOT NULL,
     description text,
     images text ARRAY,
-    email text UNIQUE,
-    phone text UNIQUE
+    email varchar(255) UNIQUE,
+    phone varchar(255) UNIQUE
   );
 
 CREATE TABLE
   professors (
     id serial PRIMARY KEY,
-    name text UNIQUE NOT NULL,
-    bio text,
+    name varchar(255) UNIQUE NOT NULL,
+    bio varchar(255),
     profile_image text,
-    email text UNIQUE,
-    phone text UNIQUE,
+    email varchar(255) UNIQUE,
+    phone varchar(255) UNIQUE,
     department_id int NOT NULL REFERENCES departments (id) ON DELETE CASCADE
   );
 
 CREATE TABLE
   admins (
     id serial PRIMARY KEY,
-    username text UNIQUE NOT NULL,
-    password text NOT NULL
+    username varchar(255) UNIQUE NOT NULL,
+    password varchar(255) NOT NULL
   );

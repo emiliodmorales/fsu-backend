@@ -12,26 +12,26 @@ This backend allows users to see the departments and faculty of the university. 
 ```dbml
 table admins {
   id serial [pk]
-  username text [unique, not null]
-  password text [not null]
+  username varchar(255) [unique, not null]
+  password varchar(255) [not null]
 }
 
 table departments {
   id serial [pk]
-  name text [unique, not null]
+  name tvarchar(255)ext [unique, not null]
   description text
   images text[]
-  email text [unique]
-  phone text [unique]
+  email varchar(255) [unique]
+  phone varchar(255) [unique]
 }
 
 table professors {
   id serial [pk]
-  name text [unique, not null]
-  bio text
+  name varchar(255) [unique, not null]
+  bio varchar(255)
   profile_image text
-  email text [unique]
-  phone [unique]
+  email varchar(255) [unique]
+  phone varchar(255) [unique]
   department_id int [not null]
 }
 
