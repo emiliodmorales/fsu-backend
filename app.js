@@ -13,6 +13,9 @@ app.use(getUserFromToken);
 import cors from "cors";
 app.use(cors({ origin: /localhost/ }));
 
+import departmentsRouter from "#api/departments";
+app.use("/departments", departmentsRouter);
+
 app.use((err, req, res, next) => {
   switch (err.code) {
     // Invalid type

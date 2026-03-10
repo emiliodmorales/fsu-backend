@@ -33,3 +33,11 @@ export async function createDepartment({
   } = await db.query(sql, [name, description, images, email, phone]);
   return department;
 }
+
+export async function getDepartments() {
+  const sql = `
+    SELECT * FROM departments
+  `;
+  const { rows: departments } = await db.query(sql);
+  return departments;
+}
