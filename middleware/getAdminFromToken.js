@@ -1,16 +1,16 @@
 import { getAdminById } from "#db/queries/admins";
 import { verifyToken } from "#utils/jwt";
 
-/** Attaches the user to the request if a valid token is provided */
-export default async function getUserFromToken(req, res, next) {
+/** Attaches the admin to the request if a valid token is provided */
+export default async function getAdminFromToken(req, res, next) {
   const authorization = req.get("authorization");
   if (!authorization || !authorization.startsWith("Bearer ")) return next();
 
   const token = authorization.split(" ")[1];
   try {
     const { id } = verifyToken(token);
-    const user = await getAdminById(id);
-    req.user = user;
+    const admin = await getAdminById(id);
+    req.admin = admin;
     next();
   } catch (e) {
     console.error(e);
