@@ -7,14 +7,17 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
-import getUserFromToken from "#middleware/getUserFromToken";
-app.use(getUserFromToken);
+import getAdminFromToken from "#middleware/getAdminFromToken";
+app.use(getAdminFromToken);
 
 import cors from "cors";
 app.use(cors({ origin: /localhost/ }));
 
 import departmentsRouter from "#api/departments";
 app.use("/departments", departmentsRouter);
+
+import professorsRouter from "#api/professors";
+app.use("/professors", professorsRouter);
 
 app.use((err, req, res, next) => {
   switch (err.code) {

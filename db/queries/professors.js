@@ -34,3 +34,11 @@ export async function createProfessor({
   } = await db.query(sql, [name, bio, profileImage, email, phone, department]);
   return professor;
 }
+
+export async function getProfessors() {
+  const sql = `
+    SELECT * FROM professors
+  `;
+  const { rows: professors } = await db.query(sql);
+  return professors;
+}
