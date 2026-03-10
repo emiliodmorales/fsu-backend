@@ -42,3 +42,14 @@ export async function getProfessors() {
   const { rows: professors } = await db.query(sql);
   return professors;
 }
+
+export async function getProfessorById(id) {
+  const sql = `
+    SELECT * FROM professors
+    WHERE id=$1
+  `;
+  const {
+    rows: [professor],
+  } = await db.query(sql, [id]);
+  return professor;
+}
