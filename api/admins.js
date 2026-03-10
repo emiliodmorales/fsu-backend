@@ -2,6 +2,7 @@ import { Router } from "express";
 const router = Router();
 export default router;
 
+import requireAdmin from "#middleware/requireAdmin";
 import requireBody from "#middleware/requireBody";
 import { createToken } from "#utils/jwt";
 import { createAdmin, getAdminByLogin } from "#db/queries/admins";
