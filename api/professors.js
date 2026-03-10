@@ -1,5 +1,6 @@
 import {
   createProfessor,
+  deleteProfessor,
   getProfessorById,
   getProfessors,
 } from "#db/queries/professors";
@@ -43,6 +44,11 @@ router.param("id", async (req, res, next) => {
 
 router.get("/:id", (req, res) => {
   res.send(req.professor);
+});
+
+router.delete("/:id", async (req, res) => {
+  const professor = await deleteProfessor(req.professor.id);
+  res.send(professor);
 });
 
 router.get("/:id/department", (req, res) => {

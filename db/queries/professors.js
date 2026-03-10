@@ -60,3 +60,15 @@ export async function getProfessorById(id) {
   } = await db.query(sql, [id]);
   return professor;
 }
+
+export async function deleteProfessor(id) {
+  const sql = `
+    DELETE FROM professors
+    WHERE id=$1
+    RETURNING *
+  `;
+  const {
+    rows: [professor],
+  } = await db.query(sql, [id]);
+  return professor;
+}
