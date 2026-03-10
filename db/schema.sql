@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS admins;
 CREATE TABLE
   departments (
     id serial PRIMARY KEY,
-    name text UNIQUE,
+    name text UNIQUE NOT NULL,
     description text,
     images text ARRAY,
     email text UNIQUE,
@@ -17,17 +17,17 @@ CREATE TABLE
 CREATE TABLE
   professors (
     id serial PRIMARY KEY,
-    name text UNIQUE,
+    name text UNIQUE NOT NULL,
     bio text,
     profile_image text,
     email text UNIQUE,
     phone text UNIQUE,
-    department text REFERENCES departments (name) ON DELETE CASCADE
+    department text NOT NULL REFERENCES departments (name) ON DELETE CASCADE
   );
 
 CREATE TABLE
   admins (
     id serial PRIMARY KEY,
-    username text UNIQUE,
-    password text
+    username text UNIQUE NOT NULL,
+    password text NOT NULL
   );
