@@ -10,8 +10,8 @@ CREATE TABLE
     name text UNIQUE,
     description text,
     images text ARRAY,
-    email text,
-    phone text
+    email text UNIQUE,
+    phone text UNIQUE
   );
 
 CREATE TABLE
@@ -20,8 +20,8 @@ CREATE TABLE
     name text UNIQUE,
     bio text,
     profile_image text,
-    email text,
-    phone text,
+    email text UNIQUE,
+    phone text UNIQUE,
     department bigint REFERENCES departments (id) ON DELETE CASCADE
   );
 
