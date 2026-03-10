@@ -1,5 +1,6 @@
 import {
   createDepartment,
+  deleteDepartment,
   getDepartmentById,
   getDepartments,
 } from "#db/queries/departments";
@@ -43,6 +44,11 @@ router.param("id", async (req, res, next) => {
 
 router.get("/:id", (req, res) => {
   res.send(req.department);
+});
+
+router.delete("/:id", async (req, res) => {
+  const department = await deleteDepartment(req.department.id);
+  res.send(department);
 });
 
 router.get("/:id/professors", (req, res) => {

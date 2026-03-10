@@ -59,3 +59,15 @@ export async function getDepartmentById(id) {
   } = await db.query(sql, [id]);
   return department;
 }
+
+export async function deleteDepartment(id) {
+  const sql = `
+    DELETE FROM departments
+    WHERE id=$1
+    RETURNING *
+  `;
+  const {
+    rows: [department],
+  } = await db.query(sql, [id]);
+  return department;
+}
