@@ -21,3 +21,14 @@ export async function createAdmin(username, password) {
   } = await db.query(sql, [username, hashedPassword]);
   return admin;
 }
+
+export async function getAdminById(id) {
+  const sql = `
+    SELECT * FROM admins
+    WHERE id=$1
+  `;
+  const {
+    rows: [admin],
+  } = await db.query(sql, [id]);
+  return admin;
+}

@@ -26,4 +26,8 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  admins (username text PRIMARY KEY, password text);
+  admins (
+    id serial PRIMARY KEY,
+    username text UNIQUE,
+    password text
+  );
