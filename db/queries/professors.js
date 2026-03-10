@@ -8,6 +8,7 @@ import db from "#db/client";
  * @property {string} images - Path to professor's picture
  * @property {string} email - The professor's email address
  * @property {string} phone - The professor's phone number
+ * @property {string} department - The department the professor works in
  */
 /**
  * Create a new professor
