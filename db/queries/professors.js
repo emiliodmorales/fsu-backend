@@ -45,8 +45,15 @@ export async function getProfessors() {
 
 export async function getProfessorById(id) {
   const sql = `
-    SELECT * FROM professors
-    WHERE id=$1
+    SELECT
+      professors.*,
+      (
+        SELECT to_json(departments)
+        FROM departments
+        WHERE departments.id = professors.department
+      ) AS department
+    FROM professors
+    WHERE professors.id=$1
   `;
   const {
     rows: [professor],
