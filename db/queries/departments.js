@@ -4,10 +4,10 @@ import db from "#db/client";
  * A department of fullstack university
  * @typedef {Object} Department
  * @property {string} name - The name of the department
- * @property {stirng} description - A description of the department
- * @property {string[]} images - An array of paths to department images
- * @property {string} email - The department email address
- * @property {string} phone - The department phone number
+ * @property {stirng?} description - A description of the department
+ * @property {string[]?} images - An array of paths to department images
+ * @property {string?} email - The department email address
+ * @property {string?} phone - The department phone number
  */
 /**
  * Create a new department

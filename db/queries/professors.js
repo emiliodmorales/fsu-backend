@@ -4,11 +4,11 @@ import db from "#db/client";
  * A professor at fullstack university
  * @typedef {Object} Professor
  * @property {string} name - The name of the professor
- * @property {stirng} bio - A description of the professor
- * @property {string} images - Path to professor's picture
- * @property {string} email - The professor's email address
- * @property {string} phone - The professor's phone number
- * @property {string} department - The department the professor works in
+ * @property {string?} bio - A description of the professor
+ * @property {string?} images - Path to professor's picture
+ * @property {string?} email - The professor's email address
+ * @property {string?} phone - The professor's phone number
+ * @property {number} department - The department the professor works in
  */
 /**
  * Create a new professor
