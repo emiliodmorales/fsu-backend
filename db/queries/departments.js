@@ -49,7 +49,7 @@ export async function getDepartmentById(id) {
       (
         SELECT json_agg(professors)
         FROM professors
-        WHERE departments.id = professors.department
+        WHERE departments.name = professors.department
       ) AS professors
     FROM departments
     WHERE departments.id=$1

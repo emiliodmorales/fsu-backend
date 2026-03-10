@@ -51,7 +51,7 @@ export async function getProfessorById(id) {
       (
         SELECT to_json(departments)
         FROM departments
-        WHERE departments.id = professors.department
+        WHERE departments.name = professors.department
       ) AS department
     FROM professors
     WHERE professors.id=$1
