@@ -2,6 +2,7 @@ import db from "#db/client";
 import { createDepartment } from "#db/queries/departments";
 import { createProfessor } from "#db/queries/professors";
 import { createUser } from "#db/queries/users";
+import { faker } from "@faker-js/faker";
 
 await db.connect();
 await seed();
@@ -14,6 +15,7 @@ async function seed() {
     description: "We love numbers",
     images: [
       "https://img.freepik.com/free-photo/blackboard-inscribed-with-scientific-formulas-calculations_1150-19413.jpg?semt=ais_hybrid&w=740&q=80",
+      "https://media.istockphoto.com/id/1265965042/vector/math-theory-mathematics-calculus-on-class-chalkboard-algebra-and-geometry-science.jpg?s=612x612&w=0&k=20&c=T97ylW_6ht1STS_MRw4YrDg0Kt3HuoXEOQI9vQFfin8=",
     ],
     email: "math@fsu.edu",
     phone: "(161)654-5654",
@@ -27,6 +29,11 @@ async function seed() {
     phone: "(243)198-1448",
     department: math.id,
   });
+
+  for (let i = 0; i < 20; i++) {
+    const name = faker.person.firstName() + " " + faker.person.lastName();
+    await createProfessor({ name, department: math.id });
+  }
 
   const dean = await createUser("dean", "password123");
 }
