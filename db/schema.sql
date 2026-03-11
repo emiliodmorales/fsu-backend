@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS professors;
 
 DROP TABLE IF EXISTS departments;
 
-DROP TABLE IF EXISTS admins;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE
   departments (
@@ -26,7 +26,7 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  admins (
+  users (
     id serial PRIMARY KEY,
     username varchar(255) UNIQUE NOT NULL,
     password varchar(255) NOT NULL

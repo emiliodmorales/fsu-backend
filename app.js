@@ -7,14 +7,14 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
-import getAdminFromToken from "#middleware/getAdminFromToken";
-app.use(getAdminFromToken);
+import getUserFromToken from "#middleware/getUserFromToken";
+app.use(getUserFromToken);
 
 import cors from "cors";
 app.use(cors({ origin: /localhost/ }));
 
-import adminsRouter from "#api/admins";
-app.use("/admins", adminsRouter);
+import usersRouter from "#api/users";
+app.use("/users", usersRouter);
 
 import departmentsRouter from "#api/departments";
 app.use("/departments", departmentsRouter);

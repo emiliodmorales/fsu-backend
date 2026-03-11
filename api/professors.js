@@ -5,7 +5,7 @@ import {
   getProfessors,
   updateProfessor,
 } from "#db/queries/professors";
-import requireAdmin from "#middleware/requireAdmin";
+import requireUser from "#middleware/requireUser";
 import requireBody from "#middleware/requireBody";
 
 import { Router } from "express";
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
 router.post(
   "/",
-  requireAdmin,
+  requireUser,
   requireBody(["name", "department"]),
   async (req, res) => {
     const { name, bio, profileImage, email, phone, department } = req.body;
@@ -49,14 +49,14 @@ router.get("/:id", (req, res) => {
   res.send(req.professor);
 });
 
-router.delete("/:id", requireAdmin, async (req, res) => {
+router.delete("/:id", requireUser, async (req, res) => {
   const professor = await deleteProfessor(req.professor.id);
   res.send(professor);
 });
 
 router.put(
   "/:id",
-  requireAdmin,
+  requireUser,
   requireBody(["name", "department"]),
   async (req, res) => {
     const { name, bio, profileImage, email, phone, department } = req.body;

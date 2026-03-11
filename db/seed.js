@@ -1,7 +1,7 @@
 import db from "#db/client";
 import { createDepartment } from "#db/queries/departments";
 import { createProfessor } from "#db/queries/professors";
-import { createAdmin } from "#db/queries/admins";
+import { createUser } from "#db/queries/users";
 
 await db.connect();
 await seed();
@@ -28,5 +28,5 @@ async function seed() {
     department: math.id,
   });
 
-  const dean = await createAdmin("dean", "password123");
+  const dean = await createUser("dean", "password123");
 }
